@@ -24,7 +24,7 @@ module TiNet
       seed = SecureRandom.hex
       {
         enterpriseId: TiNet.config.enterprise_id,
-        user_name: TiNet.config.username,
+        userName: TiNet.config.username,
         seed: seed,
         pwd: Digest::MD5.hexdigest("#{Digest::MD5.hexdigest(TiNet.config.pwd)}#{seed}")
       }

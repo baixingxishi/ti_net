@@ -9,7 +9,7 @@ RSpec.describe TiNet::CallLog do
     allow(SecureRandom).to receive(:hex).and_return(seed)
     expect(call_log.send(:default_params)).to eq(
       enterpriseId: TiNet.config.enterprise_id,
-      user_name: TiNet.config.username,
+      userName: TiNet.config.username,
       seed: seed,
       pwd: Digest::MD5.hexdigest("#{Digest::MD5.hexdigest(TiNet.config.pwd)}#{seed}")
     )
@@ -34,7 +34,7 @@ RSpec.describe TiNet::CallLog do
       url = 'www.example.com'
       params = {
         enterpriseId: TiNet.config.enterprise_id,
-        user_name: TiNet.config.username,
+        userName: TiNet.config.username,
         seed: seed,
         pwd: Digest::MD5.hexdigest("#{Digest::MD5.hexdigest(TiNet.config.pwd)}#{seed}")
       }
