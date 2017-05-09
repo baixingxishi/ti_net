@@ -1,5 +1,9 @@
+require_relative 'helpers/call_log'
+
 module TiNet
   class CallLog
+    extend TiNet::Helpers::CallLog
+
     attr_reader :unique_id
 
     def initialize(unique_id)
@@ -7,11 +11,11 @@ module TiNet
     end
 
     def incoming_detail
-      TiNet::Request.get(incoming_detail_url, default_params.merge(uniqueId: unique_id))
+      TiNet::Request.get(TiNet.config._incoming_detail_url, default_params.merge(uniqueId: unique_id))
     end
 
     def out_call_detail
-      TiNet::Request.get(out_call_detail_url, default_params.merge(uniqueId: unique_id))
+      TiNet::Request.get(TiNet.config._out_call_detail_url, default_params.merge(uniqueId: unique_id))
     end
 
     private
@@ -24,14 +28,6 @@ module TiNet
         seed: seed,
         pwd: Digest::MD5.hexdigest("#{Digest::MD5.hexdigest(TiNet.config.pwd)}#{seed}")
       }
-    end
-
-    def incoming_detail_url
-      @incoming_detail_url ||= "#{TiNet.config.clink_host}/interfaceAction/cdrIbInterface!listCdrIb.action"
-    end
-
-    def out_call_detail_url
-      @out_call_detail_url ||= "#{TiNet.config.clink_host}/interfaceAction/cdrObInterface!listCdrOb.action"
     end
   end
 end

@@ -16,13 +16,13 @@ RSpec.describe TiNet::CallLog do
   end
 
   it '#incoming_detail' do
-    stub_request(:get, call_log.send(:incoming_detail_url)).with(query: hash_including(uniqueId: 'unique_id')).to_return(body: body.to_json, status: 200)
+    stub_request(:get, TiNet.config._incoming_detail_url).with(query: hash_including(uniqueId: 'unique_id')).to_return(body: body.to_json, status: 200)
     response = call_log.incoming_detail
     expect(response.body).to eq(body.merge(res_trans: nil).as_json)
   end
 
   it '#out_call_detail' do
-    stub_request(:get, call_log.send(:out_call_detail_url)).with(query: hash_including(uniqueId: 'unique_id')).to_return(body: body.to_json, status: 200)
+    stub_request(:get, TiNet.config._out_call_detail_url).with(query: hash_including(uniqueId: 'unique_id')).to_return(body: body.to_json, status: 200)
     response = call_log.out_call_detail
     expect(response.body).to eq(body.merge(res_trans: nil).as_json)
   end

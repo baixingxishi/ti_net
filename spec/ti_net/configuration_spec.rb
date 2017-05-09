@@ -12,6 +12,6 @@ RSpec.describe TiNet::Configuration do
 
     it { should respond_to(:vlink_app_id) }
     it { should respond_to(:vlink_token) }
-    it { should respond_to(:vlink_call_url) }
+    it { should respond_to(:vlink_host) }
   end
 end

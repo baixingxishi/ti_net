@@ -22,7 +22,7 @@ RSpec.describe TiNet::Vlink do
   it '#call' do
     params = { key: 'value' }
     allow(vlink).to receive(:build_params).and_return(params)
-    stub_request(:get, "#{TiNet.config.vlink_call_url}?#{params.to_query}").to_return(body: { success: 'ok', res: '1' }.to_json, status: 200)
+    stub_request(:get, "#{TiNet.config._vlink_call_url}?#{params.to_query}").to_return(body: { success: 'ok', res: '1' }.to_json, status: 200)
     response = vlink.call('110', '123')
     expect(response.body).to eq({ success: 'ok', res: '1', res_trans: '呼叫座席失败' }.as_json)
   end

@@ -12,7 +12,7 @@ module TiNet
           puts 'Skipping config/initializers/ti_net.rb creation, as file already exists!'
         else
           puts 'Adding ti_net initializer (config/initializers/ti_net.rb)...'
-          template 'templates/ti_net.rb', path
+          template 'generators/templates/ti_net.rb', path
         end
       end
     end

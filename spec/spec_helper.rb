@@ -20,5 +20,5 @@ TiNet.configure do
 
   self.vlink_app_id = 'vlink_app_id'
   self.vlink_token = 'vlink_token'
-  self.vlink_call_url = 'http://api.vlink.cn'
+  self.vlink_host = 'http://api.vlink.cn'
 end

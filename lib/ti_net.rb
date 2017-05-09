@@ -19,6 +19,18 @@ module TiNet
 
     def configure(&block)
       config.instance_exec(&block)
+      config._clink_call_url = config._clink_call_url || "#{TiNet.config.clink_host}/interface/PreviewOutcall"
+
+      config._agent_online_url = config._agent_online_url || "#{TiNet.config.clink_host}/interface/client/ClientOnline"
+      config._agent_offline_url = config._agent_offline_url || "#{TiNet.config.clink_host}/interface/client/ClientOffline"
+      config._agent_status_url = config._agent_status_url || "#{TiNet.config.clink_host}/interface/client/ChangeStatus"
+      config._agent_hang_up_url = config._agent_hang_up_url || "#{TiNet.config.clink_host}/interface/HangUp"
+      config._agent_bind_tel_url = config._agent_bind_tel_url || "#{TiNet.config.clink_host}/interface/client/ChangeBindTel"
+
+      config._incoming_detail_url = config._incoming_detail_url || "#{TiNet.config.clink_host}/interfaceAction/cdrIbInterface!listCdrIb.action"
+      config._out_call_detail_url = config._out_call_detail_url || "#{TiNet.config.clink_host}/interfaceAction/cdrObInterface!listCdrOb.action"
+
+      config._vlink_call_url = config._vlink_call_url || "#{TiNet.config.vlink_host}/interface/open/v1/webcall"
     end
   end
 end

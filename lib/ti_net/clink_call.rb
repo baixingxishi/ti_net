@@ -10,7 +10,7 @@ module TiNet
 
     def out(customer_number, options = {})
       params = build_params.merge(options).merge(customerNumber: customer_number, userField: CGI.unescape(options.to_query))
-      TiNet::Request.get(request_url, params)
+      TiNet::Request.get(TiNet.config._clink_call_url, params)
     end
 
     private
@@ -23,10 +23,6 @@ module TiNet
         pwd: Digest::MD5.hexdigest(TiNet.config.pwd),
         sync: 0
       }
-    end
-
-    def request_url
-      @request_url ||= "#{TiNet.config.clink_host}/interface/PreviewOutcall"
     end
   end
 end
