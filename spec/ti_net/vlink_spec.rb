@@ -26,4 +26,19 @@ RSpec.describe TiNet::Vlink do
     response = vlink.call('110', '123')
     expect(response.body).to eq({ success: 'ok', res: '1', res_trans: '呼叫座席失败' }.as_json)
   end
+
+  context 'helpers' do
+    it '.record_file_url' do
+      time_now = Time.now
+      timestamp = time_now.to_i
+      allow(Time).to receive(:now).and_return(time_now)
+      url = 'www.example.com'
+      params = {
+        appId: TiNet.config.vlink_app_id,
+        timestamp: timestamp,
+        sign: Digest::MD5.hexdigest("#{TiNet.config.vlink_app_id}#{TiNet.config.vlink_token}#{timestamp}")
+      }
+      expect(TiNet::Vlink.record_file_url(url)).to eq("#{TiNet.config.vlink_host}/#{url}?#{params.to_query}")
+    end
+  end
 end
