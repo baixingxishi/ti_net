@@ -18,7 +18,6 @@ module TiNet
     def build_params
       {
         enterpriseId: TiNet.config.enterprise_id,
-        hotline: TiNet.config.hotline,
         cno: cno,
         pwd: Digest::MD5.hexdigest(TiNet.config.pwd),
         sync: 0
